@@ -84,10 +84,12 @@ public class Projectile extends Image {
         this.gbMagic = gbMagic;
         gbMagic.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float fX, float fY) {
-                if (!isAlive) {
+            public void clicked(InputEvent event, float x, float y) {
+                if (!isAlive && KnightData.fMana > 0) {
                     fDir = knight.fDir;
+                    fY = knight.fY;
                     isAlive = true;
+                    KnightData.fMana -= 22.625;
                 }
             }
         });

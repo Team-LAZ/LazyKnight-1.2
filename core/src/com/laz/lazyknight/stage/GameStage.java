@@ -70,6 +70,7 @@ public class GameStage extends Stage {
         knight.setCamera(camera);
         knight.setMap(map);
         knight.setDPad(dpad[0], dpad[1], dpad[2], dpad[3]);
+        knight.setButton(gameButtons[2]);
         addActor(knight);
     }
 

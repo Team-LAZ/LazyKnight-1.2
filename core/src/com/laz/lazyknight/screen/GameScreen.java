@@ -4,15 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.laz.lazyknight.stage.GameStage;
+import com.laz.lazyknight.stage.HUDStage;
 
 //https://github.com/wmora/martianrun/blob/master/core/src/com/gamestudio24/martianrun/screens/GameScreen.java
 
 public class GameScreen implements Screen {
 
-    private GameStage stage;
+    GameStage stage;
+    HUDStage hud;
 
     public GameScreen() {
         stage = new GameStage();
+        hud = new HUDStage();
     }
 
     @Override
@@ -22,6 +25,10 @@ public class GameScreen implements Screen {
         stage.updateMap();
         stage.draw();
         stage.act(fDelta);
+
+        hud.updateHUD();
+        hud.draw();
+        hud.act(fDelta);
     }
 
     @Override

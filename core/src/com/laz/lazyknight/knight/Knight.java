@@ -6,19 +6,24 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.laz.lazyknight.control.DPad;
+import com.laz.lazyknight.control.GameButtons;
 import com.laz.lazyknight.map.Map;
 
 public class Knight extends Image {
 
-    float fX, fY, fPosX, fPosY, fDir, fWidth, fHeight, fStateTime;
+    float fX, fY, fPosX, fPosY, fDir, fWidth, fHeight, fStateTime, fVelX, fVelY;
+    boolean isJumping, isFalling;
     TextureAtlas taKnight;
     TextureRegion trFrame, trLeft[], trRight[];
     Animation aniKnight[];
     OrthographicCamera camera;
     Map map;
     DPad up, down, left, right;
+    GameButtons gbJump;
 
     public Knight(float fX, float fY, float fWidth, float fHeight) {
         this.fX = fX; //x position of knight
@@ -29,6 +34,8 @@ public class Knight extends Image {
         fDir = 1; //default direction set to right, TODO read from file
         fPosX = 0; //x position of camera, TODO read from file and move to better place (camera class? / map class?)
         fPosY = 0; //y position of camera, TODO read from file and move to better place (camera class? / map class?)
+        fVelX = 4;
+        fVelY = 5;
 
         taKnight = new TextureAtlas("knight.atlas");
 
@@ -55,19 +62,40 @@ public class Knight extends Image {
             fDir = 0;
             trFrame = aniKnight[0].getKeyFrame(fStateTime, true);
             if (fPosX > -300) {
-                fPosX -= 4;
+                fPosX -= fVelX;
                 camera.translate(-4, 0);
             }
         } else if (right.isPressed()) {
             fDir = 1;
             trFrame = aniKnight[1].getKeyFrame(fStateTime, true);
             if (fPosX < 1200) {
-                fPosX += 4;
+                fPosX += fVelX;
                 camera.translate(4, 0);
             }
         } else {
             if (fDir == 0) trFrame = trLeft[0];
             else if (fDir == 1) trFrame = trRight[0];
+        }
+
+        if (isJumping) {
+            if (fVelY >= 0) {
+                fY += fVelY * 2;
+                fVelY -= 0.2;
+            } else {
+                isJumping = false;
+                isFalling = true;
+                fVelY = 0;
+            }
+        }
+
+        if (isFalling) {
+            if (fVelY >= 5) {
+                isFalling = false;
+                fVelY = 5;
+            } else {
+                fY -= fVelY * 2;
+                fVelY += 0.2;
+            }
         }
     }
 
@@ -90,5 +118,17 @@ public class Knight extends Image {
         this.down = down;
         this.left = left;
         this.right = right;
+    }
+
+    public void setButton(GameButtons gbJump) {
+        this.gbJump = gbJump;
+        gbJump.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float fX, float fY) {
+                if (!isJumping && !isFalling) {
+                    isJumping = true;
+                }
+            }
+        });
     }
 }

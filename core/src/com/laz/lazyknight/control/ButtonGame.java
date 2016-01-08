@@ -4,23 +4,23 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public abstract class ButtonGame extends Button {
+public class ButtonGame extends Button {
 
-    TextureAtlas taButtons;
-    Skin skButtons;
-    ButtonStyle bsButtons;
+    TextureAtlas taButton;
+    Skin skButton;
+    ButtonStyle bsButton;
 
     public ButtonGame(float fX, float fY, float fWidth, float fHeight, String sAtlas, String sName) {
         setBounds(fX, fY, fWidth, fHeight);
         setName(sName);
 
-        taButtons = new TextureAtlas(sAtlas);
+        taButton = new TextureAtlas(sAtlas);
 
-        skButtons = new Skin();
-        skButtons.addRegions(taButtons);
+        skButton = new Skin();
+        skButton.addRegions(taButton);
 
-        bsButtons = new ButtonStyle();
-        bsButtons.up = skButtons.getDrawable(sName);
-        setStyle(bsButtons);
+        bsButton = new ButtonStyle();
+        bsButton.up = skButton.getDrawable(sName);
+        setStyle(bsButton);
     }
 }

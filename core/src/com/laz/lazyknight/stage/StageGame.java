@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.laz.lazyknight.actor.Knight;
-import com.laz.lazyknight.actor.Projectile;
+import com.laz.lazyknight.actor.ActorKnight;
+import com.laz.lazyknight.actor.ActorProjectile;
 import com.laz.lazyknight.control.ButtonAttack;
 import com.laz.lazyknight.control.ButtonDPad;
 import com.laz.lazyknight.control.ButtonJump;
@@ -27,8 +27,8 @@ public class StageGame extends Stage {
     ButtonMagic btnMagic;
     ButtonDPad btnUp, btnDown, btnLeft, btnRight;
     Image imgDpadOutline;
-    Knight knight;
-    Projectile projectile;
+    ActorKnight actKnight;
+    ActorProjectile actProjectile;
 
     public StageGame() {
         super(new ScalingViewport(Scaling.stretch, Constants.APP_WIDTH, Constants.APP_HEIGHT, new OrthographicCamera(Constants.APP_WIDTH, Constants.APP_HEIGHT)));
@@ -53,13 +53,13 @@ public class StageGame extends Stage {
     }
 
     public void initKnight() {
-        knight = new Knight(Constants.APP_WIDTH / 2 - 90, Constants.APP_HEIGHT / 2 - 150, 90, 90, camera, mapMain);
-        addActor(knight);
+        actKnight = new ActorKnight(Constants.APP_WIDTH / 2 - 90, Constants.APP_HEIGHT / 2 - 150, 90, 90, "knight.atlas", camera, mapMain);
+        addActor(actKnight);
     }
 
     public void initProjectile() {
-        projectile = new Projectile(Constants.APP_WIDTH / 2 - 90, Constants.APP_HEIGHT / 2 - 150, 75, 50);
-        addActor(projectile);
+        actProjectile = new ActorProjectile(Constants.APP_WIDTH / 2 - 90, Constants.APP_HEIGHT / 2 - 150, 75, 50, "projectile.atlas");
+        addActor(actProjectile);
     }
 
     public void initDpad() {
@@ -67,16 +67,16 @@ public class StageGame extends Stage {
         imgDpadOutline.setPosition(15, 15);
         addActor(imgDpadOutline);
 
-        btnUp = new ButtonDPad(55, 100, 75, 75, "dpad.atlas", "up", knight);
+        btnUp = new ButtonDPad(55, 100, 75, 75, "dpad.atlas", "up", actKnight);
         addActor(btnUp);
 
-        btnDown = new ButtonDPad(55, 0, 75, 75, "dpad.atlas", "down", knight);
+        btnDown = new ButtonDPad(55, 0, 75, 75, "dpad.atlas", "down", actKnight);
         addActor(btnDown);
 
-        btnLeft = new ButtonDPad(0, 50, 75, 75, "dpad.atlas", "left", knight);
+        btnLeft = new ButtonDPad(0, 50, 75, 75, "dpad.atlas", "left", actKnight);
         addActor(btnLeft);
 
-        btnRight = new ButtonDPad(105, 50, 75, 75, "dpad.atlas", "right", knight);
+        btnRight = new ButtonDPad(105, 50, 75, 75, "dpad.atlas", "right", actKnight);
         addActor(btnRight);
     }
 
@@ -84,10 +84,10 @@ public class StageGame extends Stage {
         btnAttack = new ButtonAttack(Constants.APP_WIDTH - 185, 25, 80, 80, "buttons.atlas", "attack");
         addActor(btnAttack);
 
-        btnJump = new ButtonJump(Constants.APP_WIDTH - 185, 115, 80, 80, "buttons.atlas", "jump", knight);
+        btnJump = new ButtonJump(Constants.APP_WIDTH - 185, 115, 80, 80, "buttons.atlas", "jump", actKnight);
         addActor(btnJump);
 
-        btnMagic = new ButtonMagic(Constants.APP_WIDTH - 100, 75, 80, 80, "buttons.atlas", "magic", knight, projectile);
+        btnMagic = new ButtonMagic(Constants.APP_WIDTH - 100, 75, 80, 80, "buttons.atlas", "magic", actKnight, actProjectile);
         addActor(btnMagic);
     }
 

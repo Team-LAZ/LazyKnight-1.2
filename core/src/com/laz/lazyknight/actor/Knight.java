@@ -1,4 +1,4 @@
-package com.laz.lazyknight.knight;
+package com.laz.lazyknight.actor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -6,36 +6,35 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.laz.lazyknight.control.DPad;
-import com.laz.lazyknight.control.GameButtons;
-import com.laz.lazyknight.map.Map;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.laz.lazyknight.map.MapMain;
 
-public class Knight extends Image {
+public class Knight extends Actor {
 
-    float fX, fY, fPosX, fPosY, fDir, fWidth, fHeight, fStateTime, fVelX, fVelY;
-    boolean isJumping, isFalling;
+    public float fX, fY, fPosX, fPosY, fDir, fWidth, fHeight, fStateTime, fVelX, fVelY;
+    public boolean isJumping, isFalling;
+    public String sAction;
     TextureAtlas taKnight;
     TextureRegion trFrame, trLeft[], trRight[];
     Animation aniKnight[];
     OrthographicCamera camera;
-    Map map;
-    DPad up, down, left, right;
-    GameButtons gbJump;
+    MapMain mapMain;
 
-    public Knight(float fX, float fY, float fWidth, float fHeight) {
+    public Knight(float fX, float fY, float fWidth, float fHeight, OrthographicCamera camera, MapMain mapMain) {
         this.fX = fX; //x position of knight
         this.fY = fY; //y position of knight
         this.fWidth = fWidth;
         this.fHeight = fHeight;
+        this.camera = camera;
+        this.mapMain = mapMain;
+
         fStateTime = 0;
         fDir = 1; //default direction set to right, TODO read from file
-        fPosX = 0; //x position of camera, TODO read from file and move to better place (camera class? / map class?)
-        fPosY = 0; //y position of camera, TODO read from file and move to better place (camera class? / map class?)
+        fPosX = 0; //x position of camera, TODO read from file and move to better place (camera class? / mapMain class?)
+        fPosY = 0; //y position of camera, TODO read from file and move to better place (camera class? / mapMain class?)
         fVelX = 4;
         fVelY = 5;
+        sAction = "";
 
         taKnight = new TextureAtlas("knight.atlas");
 
@@ -54,18 +53,18 @@ public class Knight extends Image {
 
     @Override
     public void act(float fDelta) {
-        if (up.isPressed()) {
-            System.out.println("up");
-        } else if (down.isPressed()) {
-            System.out.println("down");
-        } else if (left.isPressed()) {
+        if (sAction.equals("up")) {
+            System.out.println("Up");
+        } else if (sAction.equals("down")) {
+            System.out.println("Down");
+        } else if (sAction.equals("left")) {
             fDir = 0;
             trFrame = aniKnight[0].getKeyFrame(fStateTime, true);
             if (fPosX > -300) {
                 fPosX -= fVelX;
                 camera.translate(-4, 0);
             }
-        } else if (right.isPressed()) {
+        } else if (sAction.equals("right")) {
             fDir = 1;
             trFrame = aniKnight[1].getKeyFrame(fStateTime, true);
             if (fPosX < 1200) {
@@ -103,32 +102,5 @@ public class Knight extends Image {
     public void draw(Batch batch, float fAlpha) {
         batch.draw(trFrame, fX, fY, fWidth, fHeight); //update knight
         fStateTime += Gdx.graphics.getDeltaTime(); //update state time
-    }
-
-    public void setCamera(OrthographicCamera camera) {
-        this.camera = camera;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    public void setDPad(DPad up, DPad down, DPad left, DPad right) {
-        this.up = up;
-        this.down = down;
-        this.left = left;
-        this.right = right;
-    }
-
-    public void setButton(GameButtons gbJump) {
-        this.gbJump = gbJump;
-        gbJump.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float fX, float fY) {
-                if (!isJumping && !isFalling) {
-                    isJumping = true;
-                }
-            }
-        });
     }
 }

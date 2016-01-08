@@ -1,6 +1,6 @@
-package com.laz.lazyknight.knight;
+package com.laz.lazyknight.util;
 
-public class KnightData {
+public class UserData {
     public static int nLVLArmor = 1;
     public static int nLVLAttack = 1;
     public static int nLVLMagic = 1;

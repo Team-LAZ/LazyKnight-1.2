@@ -3,30 +3,30 @@ package com.laz.lazyknight.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.laz.lazyknight.stage.GameStage;
-import com.laz.lazyknight.stage.HUDStage;
+import com.laz.lazyknight.stage.StageGame;
+import com.laz.lazyknight.stage.StageHUD;
 
 //https://github.com/wmora/martianrun/blob/master/core/src/com/gamestudio24/martianrun/screens/GameScreen.java
 
-public class GameScreen implements Screen {
+public class ScreenGame implements Screen {
 
-    GameStage stage;
-    HUDStage hud;
+    StageGame stage;
+    StageHUD hud;
 
-    public GameScreen() {
-        stage = new GameStage();
-        hud = new HUDStage();
+    public ScreenGame() {
+        stage = new StageGame();
+        hud = new StageHUD();
     }
 
     @Override
     public void render(float fDelta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.updateMap();
+        stage.update();
         stage.draw();
         stage.act(fDelta);
 
-        hud.updateHUD();
+        hud.update();
         hud.draw();
         hud.act(fDelta);
     }

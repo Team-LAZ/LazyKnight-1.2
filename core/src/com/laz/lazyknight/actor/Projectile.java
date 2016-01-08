@@ -1,25 +1,20 @@
-package com.laz.lazyknight.knight;
+package com.laz.lazyknight.actor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.laz.lazyknight.control.GameButtons;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.laz.lazyknight.util.Constants;
 
-public class Projectile extends Image {
+public class Projectile extends Actor {
 
-    float fX, fY, fWidth, fHeight, fStateTime, fDir, fCurrentLife;
-    boolean isAlive;
+    public float fX, fY, fWidth, fHeight, fStateTime, fDir, fCurrentLife;
+    public boolean isAlive;
     TextureAtlas taProjectile;
     TextureRegion trFrame, trLeft[], trRight[];
     Animation aniProjectile[];
-    Knight knight;
-    GameButtons gbMagic;
 
     public Projectile(float fX, float fY, float fWidth, float fHeight) {
         this.fX = fX;
@@ -74,24 +69,5 @@ public class Projectile extends Image {
     public void draw(Batch batch, float fAlpha) {
         batch.draw(trFrame, fX, fY, fWidth, fHeight);
         fStateTime += Gdx.graphics.getDeltaTime();
-    }
-
-    public void setKnight(Knight knight) {
-        this.knight = knight;
-    }
-
-    public void setButton(GameButtons gbMagic) {
-        this.gbMagic = gbMagic;
-        gbMagic.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (!isAlive && KnightData.fMana > 0) {
-                    fDir = knight.fDir;
-                    fY = knight.fY;
-                    isAlive = true;
-                    KnightData.fMana -= 22.625;
-                }
-            }
-        });
     }
 }

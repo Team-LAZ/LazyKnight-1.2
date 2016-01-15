@@ -1,13 +1,13 @@
 package com.laz.lazyknight;
 
 import com.badlogic.gdx.Game;
-import com.laz.lazyknight.screen.ScreenGame;
+import com.laz.lazyknight.screen.ScreenMainMenu;
 
 public class LazyKnight extends Game {
 
     @Override
     public void create() {
-        setScreen(new ScreenGame());
+        setScreen(new ScreenMainMenu(this));
     }
 
     @Override

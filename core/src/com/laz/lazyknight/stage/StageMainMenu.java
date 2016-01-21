@@ -1,26 +1,30 @@
 package com.laz.lazyknight.stage;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.laz.lazyknight.LazyKnight;
+import com.laz.lazyknight.control.menu.ButtonOptions;
+import com.laz.lazyknight.control.menu.ButtonPlay;
 import com.laz.lazyknight.util.Constants;
 
 public class StageMainMenu extends Stage {
 
-    OrthographicCamera camera;
-    Label lblTitle;
+    LazyKnight game;
 
-    public StageMainMenu() {
+    OrthographicCamera camera;
+    ButtonPlay btnPlay;
+    ButtonOptions btnOptions;
+
+    public StageMainMenu(LazyKnight game) {
         super(new ScalingViewport(Scaling.stretch, Constants.APP_WIDTH, Constants.APP_HEIGHT, new OrthographicCamera(Constants.APP_WIDTH, Constants.APP_HEIGHT)));
 
+        this.game = game;
+
         initCamera();
-        initLabels();
+        initButtons();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -30,9 +34,14 @@ public class StageMainMenu extends Stage {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0f);
     }
 
-    public void initLabels() {
-        lblTitle = new Label("LAZY KNIGHT " + Constants.VERSION, new LabelStyle(new BitmapFont(), Color.WHITE));
-        lblTitle.setPosition(Constants.APP_WIDTH / 2 - 50, Constants.APP_HEIGHT / 2 + 150);
-        addActor(lblTitle);
+    public void initButtons() {
+        btnPlay = new ButtonPlay((Constants.APP_WIDTH / 2 - Constants.APP_WIDTH / 6) - 32.5f, Constants.APP_HEIGHT / 4, 65, 64, "play", game);
+        addActor(btnPlay);
+
+        btnOptions = new ButtonOptions((Constants.APP_WIDTH / 2 + Constants.APP_WIDTH / 6) - 32.5f, Constants.APP_HEIGHT / 4, 65, 64, "options", game);
+        addActor(btnOptions);
+
+        //customize = new CustomizeButton((Constants.APP_WIDTH / 2) - 32.5f, Constants.APP_HEIGHT / 4, 65, 64, "customize", game);
+        //addActor(customize);
     }
 }

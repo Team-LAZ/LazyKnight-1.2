@@ -9,10 +9,10 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.laz.lazyknight.actor.ActorKnight;
 import com.laz.lazyknight.actor.ActorProjectile;
-import com.laz.lazyknight.control.ButtonAttack;
-import com.laz.lazyknight.control.ButtonDPad;
-import com.laz.lazyknight.control.ButtonJump;
-import com.laz.lazyknight.control.ButtonMagic;
+import com.laz.lazyknight.control.game.ButtonAttack;
+import com.laz.lazyknight.control.game.ButtonDPad;
+import com.laz.lazyknight.control.game.ButtonJump;
+import com.laz.lazyknight.control.game.ButtonMagic;
 import com.laz.lazyknight.map.MapMain;
 import com.laz.lazyknight.util.Constants;
 

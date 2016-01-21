@@ -3,6 +3,7 @@ package com.laz.lazyknight.actor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.laz.lazyknight.map.MapMain;
 
 public class ActorKnight extends ActorGame {
@@ -10,6 +11,7 @@ public class ActorKnight extends ActorGame {
     public float fPosX;
     public boolean isJumping, isFalling;
     public String sAction;
+    Rectangle recBounds;
     OrthographicCamera camera;
     MapMain mapMain;
 
@@ -26,6 +28,8 @@ public class ActorKnight extends ActorGame {
         fVelX = 4;
         fVelY = 5;
         sAction = "";
+
+        recBounds = new Rectangle();
     }
 
     @Override
@@ -73,11 +77,20 @@ public class ActorKnight extends ActorGame {
                 fVelY += 0.2;
             }
         }
+
+        updateBounds();
     }
 
     @Override
     public void draw(Batch batch, float fAlpha) {
         batch.draw(trFrame, fX, fY, fWidth, fHeight);
         fStateTime += Gdx.graphics.getDeltaTime();
+    }
+
+    public void updateBounds() {
+        recBounds.x = fX - fWidth / 2;
+        recBounds.y = fY - fHeight / 2;
+        recBounds.width = fWidth;
+        recBounds.height = fHeight;
     }
 }

@@ -1,4 +1,4 @@
-package com.laz.lazyknight.control;
+package com.laz.lazyknight.control.game;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;

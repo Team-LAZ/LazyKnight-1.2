@@ -21,6 +21,7 @@ public class ScreenGame implements Screen {
     @Override
     public void render(float fDelta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 
         stage.update();
         stage.draw();

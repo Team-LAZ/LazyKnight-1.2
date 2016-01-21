@@ -1,0 +1,152 @@
+
+menu.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+left-down
+  rotate: false
+  xy: 1, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+left-over
+  rotate: false
+  xy: 1, 67
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+left-up
+  rotate: false
+  xy: 68, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+mp-down
+  rotate: false
+  xy: 1, 1
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+mp-over
+  rotate: false
+  xy: 68, 67
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+mp-up
+  rotate: false
+  xy: 135, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+play-down
+  rotate: false
+  xy: 68, 1
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+play-over
+  rotate: false
+  xy: 135, 67
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+play-up
+  rotate: false
+  xy: 202, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+right-down
+  rotate: false
+  xy: 135, 1
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+right-over
+  rotate: false
+  xy: 202, 67
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+right-up
+  rotate: false
+  xy: 269, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+sp-down
+  rotate: false
+  xy: 202, 1
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+sp-over
+  rotate: false
+  xy: 269, 67
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+sp-up
+  rotate: false
+  xy: 336, 133
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+customize-down
+  rotate: false
+  xy: 269, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+customize-over
+  rotate: false
+  xy: 336, 67
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+customize-up
+  rotate: false
+  xy: 403, 133
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+options-down
+  rotate: false
+  xy: 335, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+options-over
+  rotate: false
+  xy: 402, 67
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+options-up
+  rotate: false
+  xy: 401, 1
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

@@ -8,25 +8,22 @@ import com.laz.lazyknight.stage.StageMainMenu;
 
 public class ScreenMainMenu implements Screen {
 
-    StageMainMenu stage;
     LazyKnight game;
+    StageMainMenu stage;
 
     public ScreenMainMenu(LazyKnight game) {
         this.game = game;
 
-        stage = new StageMainMenu();
+        stage = new StageMainMenu(game);
     }
 
     @Override
     public void render(float fDelta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 
         stage.draw();
         stage.act(fDelta);
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new ScreenGame());
-        }
     }
 
 
